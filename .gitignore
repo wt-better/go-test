@@ -1,0 +1,16 @@
+.*
+!./.travis.yml
+build/bundles/
+*.log
+IMAGEBUILD/
+coverage.txt
+mosnd
+mosnd.md5
+mosn.pid
+examples/codes/filter/dubbo/install/build/mosn
+configs/mosn_shm_metrics
+vendor/
+
+# istio tar file
+mosn.tar.gz
+__debug_bin
