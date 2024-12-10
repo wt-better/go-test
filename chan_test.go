@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+// worker池实现
 func TestWorkPool(t *testing.T) {
 	jobs := make(chan int, 100)
 	results := make(chan int, 100)
@@ -34,6 +35,7 @@ func TestWorkPool(t *testing.T) {
 	}
 }
 
+// 生产者消费者实现
 func TestFanInFanOut(t *testing.T) {
 	producer := func(ch chan<- int, d time.Duration) {
 		var i int
@@ -58,6 +60,7 @@ func TestFanInFanOut(t *testing.T) {
 	consumer(ch)
 }
 
+// 关闭chan
 func TestWait(t *testing.T) {
 	c := make(chan int)
 
@@ -74,22 +77,6 @@ func TestWait(t *testing.T) {
 	//case <-c:
 	//	fmt.Printf("Unblocked %v later.\n", time.Since(start))
 	//}
-}
-
-func TestTimeout(t *testing.T) {
-	ch := make(chan int)
-	go func() {
-		time.Sleep(2 * time.Second)
-		ch <- 1
-	}()
-
-	select {
-	case data := <-ch:
-		fmt.Println(data)
-	case <-time.After(time.Second * 5):
-		fmt.Println("timeout!")
-	}
-
 }
 
 func TestContextTimeout(t *testing.T) {
